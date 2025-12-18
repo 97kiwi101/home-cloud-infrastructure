@@ -4,7 +4,7 @@
 A distributed edge-computing cluster built entirely from rescued e-waste hardware. This project demonstrates Infrastructure as Code (IaC), Zero-Trust networking, and hybrid cloud architecture using Fedora Linux.
 
 ## Architecture
-![Network Topology Diagram](diagrams/cloud.png)
+![Network Topology Diagram](diagrams/Cloud.png)
 
 
 * **Gateway:** Fedora Server running on a Mini PC acting as a Bastion Host and VPN Subnet Router.
