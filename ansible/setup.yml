@@ -1,0 +1,35 @@
+  GNU nano 8.5                                                                  setup.yml                                                                             
+---
+- name: Provision Home Cloud Node
+  hosts: minipcs
+  become: yes
+
+  tasks:
+    - name: Update all packages
+      dnf:
+        name: "*"
+        state: latest
+
+    - name: Install essential tools
+      dnf:
+        name:
+          - htop
+          - git
+          - neofetch
+          - wol
+        state: present
+
+    - name: Add Tailscale Repo
+      get_url:
+        url: https://pkgs.tailscale.com/stable/fedora/tailscale.repo
+        dest: /etc/yum.repos.d/tailscale.repo
+
+    - name: Install Tailscale
+      dnf:
+        name: tailscale
+        state: present
+
+    - name: Add Wake-on-LAN alias for Tower
+      lineinfile:
+        path: /home/{{ ansible_user }}/.bashrc
+        line: "alias wake-tower='wol 00:11:22:33:44:55'"
